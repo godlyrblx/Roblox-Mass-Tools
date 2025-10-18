@@ -123,13 +123,14 @@ class Main:
         ACCENT_COLOR: Color = Color(255, 255, 255)
 
         TITLE: str = f"""
-        ░▒▓███████▓▒░░▒▓████████▓▒░░▒▓██████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-        ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
-        ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
-        ░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░ ░▒▓████████▓▒░ ░▒▓█▓▒░   ░▒▓████████▓▒░ 
-        ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
-        ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
-        ░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
+  /$$$$$$   /$$$$$$  /$$       /$$        /$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$$ 
+ /$$__  $$ /$$$_  $$| $$      | $$       /$$__  $$ /$$__  $$|__  $$__//$$$_  $$| $$__  $$
+| $$  \__/| $$$$\ $$| $$      | $$      |__/  \ $$| $$  \__/   | $$  | $$$$\ $$| $$  \ $$
+| $$      | $$ $$ $$| $$      | $$         /$$$$$/| $$         | $$  | $$ $$ $$| $$$$$$$/
+| $$      | $$\ $$$$| $$      | $$        |___  $$| $$         | $$  | $$\ $$$$| $$__  $$
+| $$    $$| $$ \ $$$| $$      | $$       /$$  \ $$| $$    $$   | $$  | $$ \ $$$| $$  \ $$
+|  $$$$$$/|  $$$$$$/| $$$$$$$$| $$$$$$$$|  $$$$$$/|  $$$$$$/   | $$  |  $$$$$$/| $$  | $$
+ \______/  \______/ |________/|________/ \______/  \______/    |__/   \______/ |__/  |__/
         """
 
         TEXT_IN_BOX: str = "Roblox-Mass-Tools"
@@ -146,22 +147,10 @@ class Main:
     "03": "Mass Unfavorite Games",
     "04": "Mass Unfollow",
     "05": "Mass Unfriend",
-    "06": "Mass delete t-shirts",
-    "07": "Unregion Lock Cookie",
-    "08": "Nuke Account/Cookie",
-    "09": "Pin Cracker",
-    "10": "Steal Group Clothes",
-
-    "11": "Mass Create Gamepasses",
-    "12": "Spam User Inbox",
-    "13": "Check Group ID",
-    "14": "Randomize Avatar",
-    "15": "Upload Clothes",
-    "16": "Mass Create Outfits",
-    "17": "Mass Delete Outfits",
-    "18": "Auto Ally",
-    "19": "Mass Off Sale Gamepasses",
-    "20": "Deactivate private servers"
+    "06": "Unregion Lock Cookie",
+    "07": "Nuke Account/Cookie",
+    "08": "Pin Cracker",
+    "09": "Steal Group Clothes",
     }
         
         OPTIONS_SPACING: str = f"{str().ljust(30)}"
@@ -242,21 +231,10 @@ class Main:
                 if str(choice).zfill(2) == '03': await self.handle(tools.unfavorite)
                 if str(choice).zfill(2) == '04': await self.handle(tools.unfollow)
                 if str(choice).zfill(2) == '05': await self.handle(tools.unfriend)
-                if str(choice).zfill(2) == '06': await self.handle(tools.del_tshirts)
-                if str(choice).zfill(2) == '07': tools.region_bypass.start(self)
-                if str(choice).zfill(2) == '08': await tools.nuker.start(self)
-                if str(choice).zfill(2) == '09': await tools.pin_crack.start(self)
-                if str(choice).zfill(2) == '10': await tools.steal_cloth.start(self)
-                if str(choice).zfill(2) == '11': await self.handle(tools.create_gamepass)
-                if str(choice).zfill(2) == '12': await self.handle(tools.inbox_message)
-                if str(choice).zfill(2) == '13': await tools.group_check.start(self)
-                if str(choice).zfill(2) == '14': await self.handle(tools.randomize_avatar)
-                if str(choice).zfill(2) == '15': await tools.publish_cloth.start(self)
-                if str(choice).zfill(2) == '16': await self.handle(tools.create_outfits)
-                if str(choice).zfill(2) == '17': await self.handle(tools.delete_fits)
-                if str(choice).zfill(2) == '18': await tools.auto_ally.start(self)
-                if str(choice).zfill(2) == '19': await self.handle(tools.offsale_gamepass)
-                if str(choice).zfill(2) == '20': await self.handle(tools.ps_deactivate)
+                if str(choice).zfill(2) == '06': tools.region_bypass.start(self)
+                if str(choice).zfill(2) == '07': await tools.nuker.start(self)
+                if str(choice).zfill(2) == '08': await tools.pin_crack.start(self)
+                if str(choice).zfill(2) == '09': await tools.steal_cloth.start(self)
             except Exception as e:
                 import traceback
                 traceback.print_exc()
@@ -268,5 +246,6 @@ class Main:
 
 if __name__ == "__main__":
     Main()
+
 
 
