@@ -119,7 +119,7 @@ class Main:
 
     def display_theme(self, banner=None):
         os.system('cls' if os.name == 'nt' else 'clear')
-        MAIN_COLOR: Color = Color(0xA080FF)
+        MAIN_COLOR: Color = Color(220, 0, 0)
         ACCENT_COLOR: Color = Color(255, 255, 255)
 
         TITLE: str = f"""
@@ -246,6 +246,7 @@ class Main:
 
 if __name__ == "__main__":
     Main()
+
 
 
 
