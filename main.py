@@ -133,7 +133,7 @@ class Main:
  \______/  \______/ |________/|________/ \______/  \______/    |__/   \______/ |__/  |__/
         """
 
-        TEXT_IN_BOX: str = "Roblox-Mass-Tools"
+        TEXT_IN_BOX: str = "R0BL0X-4CC-C0LL3CT0R"
 
         SIGNATURE: str = f"""
         ╔═{"═" * (len(TEXT_IN_BOX) + len(self.version) + 1)}═╗
@@ -240,12 +240,13 @@ class Main:
                 traceback.print_exc()
                 cprint.error(e)
 
-            choice = input(f"""\n{Color(0xA080FF)}┌───({Color(255, 255, 255)}{username_pc}@root{Color(0xA080FF)})─[{Color(255, 255, 255)}~{Color(0xA080FF)}]
+            choice = input(f"""\n{Color(220, 0, 0)}┌───({Color(255, 255, 255)}{username_pc}@root{Color(220, 0, 0)})─[{Color(255, 255, 255)}~{Color(220, 0, 0)}]
 └──{Color(255, 255, 255)}$ Press enter to go back . . .""")
 
 
 if __name__ == "__main__":
     Main()
+
 
 
 
